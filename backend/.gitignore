@@ -1,0 +1,43 @@
+# Archivos y carpetas para ignorar en un proyecto backend Go
+
+# Binarios compilados
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Carpetas de salida de compilación
+/bin/
+/build/
+
+# Archivos temporales y de sistema
+*.log
+*.tmp
+*.out
+.DS_Store
+Thumbs.db
+
+# Archivos de dependencias
+vendor/
+
+# Archivos de configuración sensibles
+.env
+.env.*
+
+# Archivos de bases de datos locales
+*.db
+*.sqlite
+
+# Archivos generados por el editor
+.idea/
+.vscode/
+*.swp
+
+# Archivos de cobertura de tests
+dist/
+coverage.out
+
+# Otros
+node_modules/

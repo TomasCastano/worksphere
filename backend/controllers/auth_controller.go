@@ -5,6 +5,7 @@ import (
 	"backend/models"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -71,6 +72,9 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Credenciales incorrectas"})
 		return
 	}
+
+	// Recortar espacios de la contraseña ingresada
+	input.Password = strings.TrimSpace(input.Password)
 
 	// Comparar contraseñas
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(input.Password)); err != nil {
