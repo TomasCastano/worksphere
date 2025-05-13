@@ -1,4 +1,4 @@
-import LoginPage from "./pages/LoginPage/LoginPage"
+import AuthPage from "./pages/AuthPage/AuthPage"
 import { AuthProvider } from "./providers/AuthProvider"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import HomePage from "./pages/HomePage/HomePage"
@@ -9,7 +9,7 @@ function App() {
 		<AuthProvider>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/login" element={<LoginPage />} />
+					<Route path="/login" element={<AuthPage />} />
                     <Route
                         path="/home"
                         element={
