@@ -10,14 +10,14 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (token) {
-            setUser({ username: "placeholder" }) // puedes decodificar el JWT si quieres info
+            setUser({ email: "placeholder" }) // puedes decodificar el JWT si quieres info
         } else {
             setUser(null)
         }
     }, [token])
 
-    const login = async (username, password) => {
-        const data = await loginRequest(username, password)
+    const login = async (email, password) => {
+        const data = await loginRequest(email, password)
         Cookies.set("token", data.token, { secure: true, sameSite: 'strict' })
         setToken(data.token)
     }

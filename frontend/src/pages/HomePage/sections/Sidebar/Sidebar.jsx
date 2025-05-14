@@ -5,9 +5,20 @@ import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
 import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../../../providers/AuthProvider'
 
 const Sidebar = () => {
+
+    const navigate = useNavigate()
+    const { logout } = useAuth()
+
+    const handleLogout = () => {
+        logout()
+        navigate('/login')
+    }
+
     return (
         <nav className="w-[200px] h-[100dvh] bg-white border-r border-gray-200 flex flex-col justify-between">
             <header className="px-4 py-6 flex flex-col items-center justify-center border-b border-gray-200">
@@ -23,12 +34,14 @@ const Sidebar = () => {
                     <li className="p-2 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2"><SettingsOutlinedIcon fontSize="small" />Configuración</li>
                 </ul>
             </div>
-            <footer className="p-4 w-full flex items-center justify-between border-t border-gray-200">
-                <div className="flex flex-col">
-                    <span className="font-medium text-sm">Usuario</span>
-                    <span className="text-xs text-gray-500">usuario@usuario.com</span>
+            <footer className="p-4 w-full flex flex-row items-center justify-between gap-2 border-t border-gray-200">
+                <div className="flex flex-col overflow-hidden">
+                    <span className="font-medium text-sm truncate">James David Rodriguez González</span>
+                    <span className="text-xs text-gray-500 truncate">tomascastanochica@gmail.com</span>
                 </div>
-                <button className="p-2 rounded-md hover:bg-gray-100 cursor-pointer  "><LogoutOutlinedIcon fontSize="small" /></button>
+                <button onClick={handleLogout} className="flex items-center justify-center p-2 rounded-md hover:bg-red-500 hover:text-white transition-colors cursor-pointer">
+                    <LogoutOutlinedIcon fontSize="small" />
+                </button>
             </footer>
         </nav>
     )
