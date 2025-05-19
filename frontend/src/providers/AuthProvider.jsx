@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react"
-import { login as loginRequest } from "../api/authService"
+import { login as loginRequest, getLoggedUser as getLoggedUserRequest } from "../api/authService"
 import Cookies from "js-cookie"
 
 const AuthContext = createContext()
@@ -7,10 +7,12 @@ const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [token, setToken] = useState(Cookies.get("token") || null)
-
+    
     useEffect(() => {
         if (token) {
-            setUser({ email: "placeholder" }) // puedes decodificar el JWT si quieres info
+            getLoggedUserRequest().then((data) => {
+                setUser(data)
+            })
         } else {
             setUser(null)
         }
@@ -25,6 +27,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         Cookies.remove("token")
         setToken(null)
+        setUser(null)
     }
 
     return (
