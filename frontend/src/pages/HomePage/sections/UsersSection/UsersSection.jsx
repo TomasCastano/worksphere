@@ -1,13 +1,14 @@
 import { useUsers } from "../../../../providers/UsersProvider"
+import UsersTable from "./components/UsersTable/UsersTable"
 
 const UsersSection = () => {
     const { users } = useUsers()
 
     return (
-        <div>
-            <p>UsersSection</p>
-            <p>{users.length}</p>
-        </div>
+        <section className="p-10 flex flex-col gap-5">
+            <h2 className="text-2xl font-bold">Administración de usuarios</h2>
+            <UsersTable users={users} />
+        </section>
     )
 }
 
