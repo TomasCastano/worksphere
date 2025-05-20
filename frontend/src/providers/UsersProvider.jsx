@@ -32,6 +32,12 @@ export const UsersProvider = ({ children }) => {
         return users.find((user) => user.id === id)
     }
 
+    const createUser = (user) => {
+        createUserRequest(user).then((data) => {
+            setUsers([...users, data])
+        })
+    }
+
     const updateUser = (user) => {
         updateUserRequest(user).then((data) => {
             setUsers(users.map((u) => (u.id === user.id ? data : u)))
@@ -45,7 +51,7 @@ export const UsersProvider = ({ children }) => {
     }
 
     return (
-        <UsersContext.Provider value={{ users, token, setUsers, getUsers, getUserById, updateUser, deleteUser }}>
+        <UsersContext.Provider value={{ users, token, setUsers, getUsers, getUserById, createUser, updateUser, deleteUser }}>
             {children}
         </UsersContext.Provider>
     )

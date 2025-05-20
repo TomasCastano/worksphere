@@ -1,4 +1,4 @@
-import UserRegister from "../UserRegister/UserRegister"
+import UserRow from "../UserRow/UserRow"
 
 const UsersTable = ({ users }) => {
     return (
@@ -9,12 +9,12 @@ const UsersTable = ({ users }) => {
                         <th scope="col" className="px-6 py-3">Nombre</th>
                         <th scope="col" className="px-6 py-3">Email</th>
                         <th scope="col" className="px-6 py-3">Rol</th>
-                        <th scope="col" className="px-6 py-3">Acciones</th>
+                        <th scope="col" className="px-6 py-3 text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody className="bg-white">
                     {users.map((user) => (
-                        <UserRegister key={user.id} user={user} />
+                        <UserRow key={user.id} user={user} />
                     ))}
                 </tbody>
             </table>

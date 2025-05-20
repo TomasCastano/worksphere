@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // Obtener todos los usuarios
@@ -24,6 +25,14 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
+	// Hashear la contraseña
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al encriptar la contraseña"})
+		return
+	}
+
+	user.Password = string(hashedPassword)
 	config.DB.Create(&user)
 	c.JSON(http.StatusOK, user)
 }
@@ -55,7 +64,6 @@ func UpdateUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
 	config.DB.Save(&user)
 	c.JSON(http.StatusOK, user)
 }
