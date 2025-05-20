@@ -1,12 +1,13 @@
-import { UsersProvider } from "../../../../providers/UsersProvider"
+import { useUsers } from "../../../../providers/UsersProvider"
 
 const UsersSection = () => {
-
+    const { users } = useUsers()
 
     return (
-        <UsersProvider>
-            <div>UsersSection</div>
-        </UsersProvider>
+        <div>
+            <p>UsersSection</p>
+            <p>{users.length}</p>
+        </div>
     )
 }
 

@@ -3,6 +3,7 @@ import { AuthProvider } from "./providers/AuthProvider"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import HomePage from "./pages/HomePage/HomePage"
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
+import { UsersProvider } from "./providers/UsersProvider"
 
 function App() {
 	return (
@@ -14,7 +15,9 @@ function App() {
                         path="/home/*"
                         element={
                             <ProtectedRoute>
-                                <HomePage />
+                                <UsersProvider>
+                                    <HomePage />
+                                </UsersProvider>
                             </ProtectedRoute>
                         }
                     />

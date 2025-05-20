@@ -1,36 +1,35 @@
 import { createContext, useContext, useState, useEffect } from "react"
-import { getUsers, getUserById } from "../api/usersService"
+import { getUsers as getUsersRequest } from "../api/usersService"
 import Cookies from "js-cookie"
 
 const UsersContext = createContext()
 
 export const UsersProvider = ({ children }) => {
     const [users, setUsers] = useState([])
-    const [user, setUser] = useState(null)
+    const [token, setToken] = useState(Cookies.get("token") || null)
 
-    console.log(users)
-    
     useEffect(() => {
-        const token = Cookies.get("token")
         if (token) {
-            getUsers().then((data) => {
+            getUsersRequest().then((data) => {
                 setUsers(data)
-            }).catch((err) => {
-                console.error('Error al obtener usuarios:', err)
-                setUsers([])
             })
         } else {
             setUsers([])
         }
-    }, [])
+    }, [token])
 
-    const getUser = async (id) => {
-        const data = await getUserById(id)
-        setUser(data)
+    const getUsers = () => {
+        if (token) {
+            getUsersRequest().then((data) => {
+                setUsers(data)
+            })
+        } else {
+            setUsers([])
+        }
     }
 
     return (
-        <UsersContext.Provider value={{ users, user, getUser }}>
+        <UsersContext.Provider value={{ users, token, setUsers, getUsers }}>
             {children}
         </UsersContext.Provider>
     )
