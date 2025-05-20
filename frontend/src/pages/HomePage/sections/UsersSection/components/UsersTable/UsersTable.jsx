@@ -1,23 +1,20 @@
+import UserRegister from "../UserRegister/UserRegister"
+
 const UsersTable = ({ users }) => {
     return (
-        <div className="rounded-md overflow-hidden border border-gray-200">
-            <table className="min-w-full border-separate border-spacing-0">
-                <thead className="bg-gray-500">
+        <div className="relative overflow-x-auto rounded-md border border-gray-200">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-100 border-b border-gray-200">
                     <tr>
-                        <th className='text-left p-2'>Nombre</th>
-                        <th className='text-left p-2'>Email</th>
-                        <th className='text-left p-2'>Rol</th>
-                        <th className='text-left p-2'>Acciones</th>
+                        <th scope="col" className="px-6 py-3">Nombre</th>
+                        <th scope="col" className="px-6 py-3">Email</th>
+                        <th scope="col" className="px-6 py-3">Rol</th>
+                        <th scope="col" className="px-6 py-3">Acciones</th>
                     </tr>
                 </thead>
                 <tbody className="bg-white">
                     {users.map((user) => (
-                        <tr key={user.id}>
-                            <td className='p-2 text-left'>{user.nombre}</td>
-                            <td className='p-2 text-left'>{user.email}</td>
-                            <td className='p-2 text-left'>{user.role.nombre}</td>
-                            <td className='p-2 text-left'>Acciones</td>
-                        </tr>
+                        <UserRegister key={user.id} user={user} />
                     ))}
                 </tbody>
             </table>

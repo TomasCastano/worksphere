@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react"
-import { login as loginRequest, getLoggedUser as getLoggedUserRequest } from "../api/authService"
+import { login as loginRequest, getLoggedUser as getLoggedUserRequest, createUser as createUserRequest } from "../api/authService"
 import Cookies from "js-cookie"
 
 const AuthContext = createContext()
@@ -30,8 +30,14 @@ export const AuthProvider = ({ children }) => {
         setUser(null)
     }
 
+    const createUser = (user) => {
+        createUserRequest(user).then((data) => {
+            setUser(data)
+        })
+    }
+
     return (
-        <AuthContext.Provider value={{ user, token, login, logout }}>
+        <AuthContext.Provider value={{ user, token, login, logout, createUser }}>
             {children}
         </AuthContext.Provider>
     )

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react"
-import { getUsers as getUsersRequest } from "../api/usersService"
+import { getUsers as getUsersRequest, createUser as createUserRequest, updateUser as updateUserRequest, deleteUser as deleteUserRequest } from "../api/usersService"
 import Cookies from "js-cookie"
 
 const UsersContext = createContext()
@@ -28,8 +28,24 @@ export const UsersProvider = ({ children }) => {
         }
     }
 
+    const getUserById = (id) => {
+        return users.find((user) => user.id === id)
+    }
+
+    const updateUser = (user) => {
+        updateUserRequest(user).then((data) => {
+            setUsers(users.map((u) => (u.id === user.id ? data : u)))
+        })
+    }
+
+    const deleteUser = (id) => {
+        deleteUserRequest(id).then(() => {
+            setUsers(users.filter((user) => user.id !== id))
+        })
+    }
+
     return (
-        <UsersContext.Provider value={{ users, token, setUsers, getUsers }}>
+        <UsersContext.Provider value={{ users, token, setUsers, getUsers, getUserById, updateUser, deleteUser }}>
             {children}
         </UsersContext.Provider>
     )
