@@ -4,8 +4,11 @@ import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined'
 import PaymentsOutlinedIcon from '@mui/icons-material/PaymentsOutlined'
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { useSpaces } from '../../../../../providers/SpacesProvider'
 
-const SpacesCard = ({ name, location, capacity, price }) => {
+const SpacesCard = ({ name, location, capacity, price, id }) => {
+
+    const { deleteSpace } = useSpaces()
 
     let badgeMessage = 'Gratis'
     if (price !== 0) {
@@ -30,7 +33,7 @@ const SpacesCard = ({ name, location, capacity, price }) => {
                 </div>
                 <footer className="flex items-center gap-2 border-t border-gray-200 pt-4">
                     <button className="bg-gray-900 font-medium text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-1 text-xs cursor-pointer"><EditNoteOutlinedIcon fontSize='small' className="text-gray-200" />Editar</button>
-                    <button className="bg-red-500 font-medium text-white px-3 py-2 rounded hover:bg-red-400 w-fit flex items-center gap-1 text-xs cursor-pointer"><DeleteOutlineIcon fontSize='small' className="text-gray-200" />Eliminar</button>
+                    <button className="bg-red-500 font-medium text-white px-3 py-2 rounded hover:bg-red-400 w-fit flex items-center gap-1 text-xs cursor-pointer" onClick={() => deleteSpace(id)}><DeleteOutlineIcon fontSize='small' className="text-gray-200" />Eliminar</button>
                 </footer>
             </div>
         </div>
