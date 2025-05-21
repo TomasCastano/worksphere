@@ -29,29 +29,33 @@ const UpdateUserModal = ({ open, setOpen, user, userID,handleUpdateUser }) => {
 
     return (
         <Modal open={open} onClose={() => setOpen(false)}>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-5 w-[500px]">
-                <div className="flex flex-col gap-1">
-                    <label htmlFor="nombre">Nombre</label>
-                    <input type="text" name="nombre" value={userUpdate.nombre} placeholder="Nombre" onChange={handleChange} className="p-3 rounded-md border border-gray-300 bg-gray-50 outline-none focus:border-gray-500"/>
-                </div>
-                <div className="flex flex-col gap-1">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" value={userUpdate.email} placeholder="Email" onChange={handleChange} className="p-3 rounded-md border border-gray-300 bg-gray-50 outline-none focus:border-gray-500"/>
-                </div>
-                <div className="flex flex-col gap-1">
-                    <label htmlFor="rol">Rol</label>
-                    <select
-                        name="role"
-                        id="rol"
-                        value={userUpdate.role}
-                        onChange={handleChange}
-                    >
-                        <option value="1">Administrador</option>
-                        <option value="2">Usuario</option>
-                    </select>
-                </div>
-                <button type="submit" className="bg-gray-900 text-white p-3 rounded-md mt-6 hover:bg-gray-800 transition-colors">Actualizar</button>
-            </form>
+            <div className="p-10 flex flex-col gap-5">
+                <h3 className="text-2xl font-bold">Actualizar usuario</h3>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-[500px]">
+                    <div className="flex flex-col gap-1">
+                        <label htmlFor="nombre" className="text-sm font-medium text-gray-700">Nombre</label>
+                        <input type="text" name="nombre" value={userUpdate.nombre} placeholder="Nombre" onChange={handleChange} className="p-3 rounded-md border border-gray-300 bg-gray-50 outline-none focus:border-gray-500"/>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                        <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" name="email" value={userUpdate.email} placeholder="Email" onChange={handleChange} className="p-3 rounded-md border border-gray-300 bg-gray-50 outline-none focus:border-gray-500"/>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                        <label htmlFor="rol" className="text-sm font-medium text-gray-700">Rol</label>
+                        <select
+                            name="role"
+                            id="rol"
+                            value={userUpdate.role}
+                            onChange={handleChange}
+                            className="p-3 rounded-md border border-gray-300 bg-gray-50 outline-none focus:border-gray-500"
+                        >
+                            <option value="1">Administrador</option>
+                            <option value="2">Usuario</option>
+                        </select>
+                    </div>
+                    <button type="submit" className="bg-gray-900 text-white p-3 rounded-md mt-6 hover:bg-gray-800 transition-colors">Actualizar</button>
+                </form>
+            </div>
         </Modal>
     )
 }

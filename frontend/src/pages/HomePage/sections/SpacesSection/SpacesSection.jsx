@@ -4,7 +4,6 @@ import CreateSpaceCard from "./CreateSpaceCard/CreateSpaceCard"
 
 const SpacesSection = () => {
     const { spaces } = useSpaces()
-    console.log(spaces)
     return (
         <section className="p-10 flex flex-col gap-5">
             <h2 className="text-2xl font-bold">Administración de espacios</h2>

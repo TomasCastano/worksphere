@@ -16,20 +16,21 @@ const SpacesCard = ({ name, location, capacity, price }) => {
         <div className="border border-gray-200 rounded-md bg-white w-80">
             <header className="relative">
                 <img src={workspaceImage} alt="workspace image" className="w-full h-auto object-cover rounded-t-md" />
-                <div className="absolute top-2 right-2 bg-gray-900 text-white text-sm px-2 py-1 rounded-full font-medium">
+                <div className="absolute top-2 right-2 bg-gray-900 text-white text-sm px-2 py-1 rounded-full font-medium z-1">
                     {badgeMessage}
                 </div>
+                <div className="absolute top-0 left-0 w-full h-full rounded-t-md bg-black/30 z-0" />
             </header>
             <div className="p-4 flex flex-col gap-4">
                 <h3 className="text-xl font-semibold">{name}</h3>
                 <div className="flex flex-col gap-2">
-                    <p className="flex items-center gap-2 text-gray-700"><LocationOnOutlinedIcon fontSize="small" className="text-gray-600" /><span className="font-medium">Ubicación:</span> {location}</p>
-                    <p className="flex items-center gap-2 text-gray-700"><GroupsOutlinedIcon fontSize="small" className="text-gray-600" /><span className="font-medium">Capacidad:</span> {capacity} personas</p>
-                    <p className="flex items-center gap-2 text-gray-700"><PaymentsOutlinedIcon fontSize="small" className="text-gray-600" /><span className="font-medium">Precio por hora:</span> ${price}</p>
+                    <p className="flex items-center gap-2 text-gray-700 text-sm"><LocationOnOutlinedIcon fontSize="small" className="text-gray-600" /><span className="font-medium">Ubicación:</span> {location}</p>
+                    <p className="flex items-center gap-2 text-gray-700 text-sm"><GroupsOutlinedIcon fontSize="small" className="text-gray-600" /><span className="font-medium">Capacidad:</span> {capacity} personas</p>
+                    <p className="flex items-center gap-2 text-gray-700 text-sm"><PaymentsOutlinedIcon fontSize="small" className="text-gray-600" /><span className="font-medium">Precio por hora:</span> ${price}</p>
                 </div>
                 <footer className="flex items-center gap-2 border-t border-gray-200 pt-4">
-                    <button className="bg-gray-900 text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-1 text-xs cursor-pointer"><EditNoteOutlinedIcon fontSize='small' className="text-gray-200" />Editar</button>
-                    <button className="bg-red-500 text-white px-3 py-2 rounded hover:bg-red-600 w-fit flex items-center gap-1 text-xs cursor-pointer"><DeleteOutlineIcon fontSize='small' className="text-gray-200" />Eliminar</button>
+                    <button className="bg-gray-900 font-medium text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-1 text-xs cursor-pointer"><EditNoteOutlinedIcon fontSize='small' className="text-gray-200" />Editar</button>
+                    <button className="bg-red-500 font-medium text-white px-3 py-2 rounded hover:bg-red-400 w-fit flex items-center gap-1 text-xs cursor-pointer"><DeleteOutlineIcon fontSize='small' className="text-gray-200" />Eliminar</button>
                 </footer>
             </div>
         </div>
