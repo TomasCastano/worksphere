@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import HomePage from "./pages/HomePage/HomePage"
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
 import { UsersProvider } from "./providers/UsersProvider"
+import { SpacesProvider } from "./providers/SpacesProvider"
 
 function App() {
 	return (
@@ -12,11 +13,13 @@ function App() {
 				<Routes>
 					<Route path="/login" element={<AuthPage />} />
                     <Route
-                        path="/home/*"
+                        path="/home/*"  
                         element={
                             <ProtectedRoute>
                                 <UsersProvider>
-                                    <HomePage />
+                                    <SpacesProvider>
+                                        <HomePage />
+                                    </SpacesProvider>
                                 </UsersProvider>
                             </ProtectedRoute>
                         }

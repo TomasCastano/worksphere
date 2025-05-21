@@ -17,7 +17,7 @@ const UserRow = ({user}) => {
     
     return (
         <>
-        <tr className="bg-white border-b border-gray-200">
+        <tr className="bg-white border-b border-gray-200 text-gray-600">
             <td className='px-6 py-4 font-medium'>{user.nombre}</td>
             <td className='px-6 py-4'>{user.email}</td>
             <td className='px-6 py-4'>{user.role.nombre}</td>
