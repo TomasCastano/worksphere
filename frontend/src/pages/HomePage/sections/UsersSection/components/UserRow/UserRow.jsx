@@ -4,16 +4,14 @@ import { useState } from "react"
 
 const UserRow = ({user}) => {
     const [open, setOpen] = useState(false)
-    const { deleteUser, updateUser } = useUsers()
-
-    console.log(user)
+    const { deleteUser, updateUserData } = useUsers()
 
     const handleDeleteUser = () => {
         deleteUser(user.id)
     }
 
-    const handleUpdateUser = (user) => {
-        updateUser(user)
+    const handleUpdateUser = (userData, id) => {
+        updateUserData(userData, id)
         setOpen(false)
     }
     
@@ -28,7 +26,13 @@ const UserRow = ({user}) => {
                 <button onClick={handleDeleteUser} className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded cursor-pointer">Eliminar</button>
             </td>
         </tr>
-        <UpdateUserModal open={open} setOpen={setOpen} user={user} handleUpdateUser={handleUpdateUser} />
+        <UpdateUserModal
+            open={open}
+            setOpen={setOpen}
+            user={user}
+            userID={user.id}
+            handleUpdateUser={handleUpdateUser}
+        />
         </>
     )
 }
