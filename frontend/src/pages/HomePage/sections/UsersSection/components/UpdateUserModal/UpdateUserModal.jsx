@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import Modal from '../../../../../../components/modal/modal'
+import Modal from '../../../../../../components/Modal/Modal'
 
-const UpdateUserModal = ({ open, setOpen, user, userID,handleUpdateUser }) => {
+const UpdateUserModal = ({ open, setOpen, user, userID, handleUpdateUser }) => {
 
     const [userUpdate, setUserUpdate] = useState({
         nombre: user.nombre,

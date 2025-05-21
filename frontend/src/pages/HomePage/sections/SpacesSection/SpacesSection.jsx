@@ -1,6 +1,6 @@
 import { useSpaces } from "../../../../providers/SpacesProvider"
-import SpacesCard from "./SpacesCard/SpacesCard"
-import CreateSpaceCard from "./CreateSpaceCard/CreateSpaceCard"
+import SpacesCard from "./components/SpacesCard/SpacesCard"
+import CreateSpaceCard from "./components/CreateSpaceCard/CreateSpaceCard"
 import { useState } from "react"
 
 const SpacesSection = () => {
