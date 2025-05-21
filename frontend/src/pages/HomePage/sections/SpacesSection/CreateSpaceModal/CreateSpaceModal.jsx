@@ -24,6 +24,7 @@ const CreateSpaceModal = ({ open, setOpen, handleCreateSpace }) => {
                             name="nombre"
                             value={space.nombre}
                             placeholder="Nombre"
+                            autoComplete="off"
                             onChange={(e) => setSpace({...space, nombre: e.target.value})}
                             className="p-3 rounded-md border border-gray-300 bg-gray-50 outline-none focus:border-gray-500"
                         />
@@ -35,6 +36,7 @@ const CreateSpaceModal = ({ open, setOpen, handleCreateSpace }) => {
                             name="ubicacion"
                             value={space.ubicacion}
                             placeholder="Ubicación"
+                            autoComplete="off"
                             onChange={(e) => setSpace({...space, ubicacion: e.target.value})}
                             className="p-3 rounded-md border border-gray-300 bg-gray-50 outline-none focus:border-gray-500"
                         />

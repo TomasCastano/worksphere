@@ -16,7 +16,7 @@ const SpacesCard = ({ name, location, capacity, price, id }) => {
     }
 
     return (
-        <div className="border border-gray-200 rounded-md bg-white w-80">
+        <div className="border border-gray-200 rounded-md bg-white w-70 shadow-xs">
             <header className="relative">
                 <img src={workspaceImage} alt="workspace image" className="w-full h-auto object-cover rounded-t-md" />
                 <div className="absolute top-2 right-2 bg-gray-900 text-white text-sm px-2 py-1 rounded-full font-medium z-1">

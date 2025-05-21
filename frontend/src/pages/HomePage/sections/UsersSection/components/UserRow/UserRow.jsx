@@ -25,9 +25,9 @@ const UserRow = ({user}) => {
             <td className='px-6 py-4'>
                 <p className="px-2 py-1 rounded-full bg-gray-200 text-gray-900 text-xs text-center">{user.role.nombre}</p>
             </td>
-            <td className='px-6 py-4 flex gap-2 justify-between items-center'>
-                <button onClick={() => setOpen(true)} className="bg-gray-900 font-medium text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-1 text-xs cursor-pointer"><EditNoteOutlinedIcon fontSize='small' className="text-gray-200" />Editar</button>
-                <button onClick={handleDeleteUser} className="bg-red-500 font-medium text-white px-3 py-2 rounded hover:bg-red-400 w-fit flex items-center gap-1 text-xs cursor-pointer"><DeleteOutlineIcon fontSize='small' className="text-gray-200" />Eliminar</button>
+            <td className='px-6 py-4 flex gap-2 justify-center items-center'>
+                <button onClick={() => setOpen(true)} className="bg-gray-900 font-medium text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-1 text-xs cursor-pointer"><EditNoteOutlinedIcon fontSize='small' />Editar</button>
+                <button onClick={handleDeleteUser} className="bg-red-500 font-medium text-white px-3 py-2 rounded hover:bg-red-400 w-fit flex items-center gap-1 text-xs cursor-pointer"><DeleteOutlineIcon fontSize='small' />Eliminar</button>
             </td>
         </tr>
         <UpdateUserModal

@@ -15,11 +15,11 @@ const UsersSection = () => {
 
     return (
         <>
-        <section className="p-10 flex flex-col gap-5">
+        <section className="p-10 flex flex-col gap-5 overflow-hidden w-full">
             <h2 className="text-2xl font-bold">Administración de usuarios</h2>
             <div className="flex justify-between items-center gap-2">
                 <input
-                    className="py-2 px-3 rounded-md border border-gray-300 bg-white outline-none focus:border-gray-500 w-1/2"
+                    className="py-2 px-3 rounded-md border border-gray-200 bg-white outline-none focus:border-gray-500 w-1/2"
                     type="text"
                     placeholder="Buscar usuario"
                 />
@@ -31,7 +31,9 @@ const UsersSection = () => {
                     Agregar usuario
                 </button>
             </div>
-            <UsersTable users={users} />
+            <div className="p-10 bg-white rounded-md border border-gray-200 shadow-xs w-full overflow-x-auto">
+                <UsersTable users={users} />
+            </div>
         </section>
         <CreateUserModal open={open} setOpen={setOpen} handleCreateUser={handleCreateUser} />
         </>

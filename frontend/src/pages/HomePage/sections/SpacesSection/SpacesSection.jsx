@@ -11,9 +11,9 @@ const SpacesSection = () => {
         setOpen(false)
     }
     return (
-        <section className="p-10 flex flex-col gap-5">
+        <section className="p-10 flex flex-col gap-5 overflow-hidden">
             <h2 className="text-2xl font-bold">Administración de espacios</h2>
-            <div className="flex flex-wrap gap-5">
+            <div className="flex flex-wrap justify-center gap-5 overflow-x-auto p-10 bg-white rounded-md border border-gray-200 shadow-xs">
                 {spaces.map((space) => (
                     <SpacesCard
                         key={space.id}
