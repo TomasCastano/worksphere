@@ -1,6 +1,8 @@
+import { useState } from "react"
 import { usePayments } from "../../../../../../providers/PaymentsProvider"
 import EditNoteOutlinedIcon from "@mui/icons-material/EditNoteOutlined"
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
+import UpdatePaymentModal from "../UpdatePaymentModal/UpdatePaymentModal"
 
 const formatDate = (dateString) => {
     const date = new Date(dateString)
@@ -16,7 +18,20 @@ const formatDate = (dateString) => {
 }
 
 const PaymentRow = ({ payment }) => {
-    const { deletePayment, updatePaymentData } = usePayments()
+    const { deletePayment, updatePayment } = usePayments()
+    const [open, setOpen] = useState(false)
+    const [paymentID, setPaymentID] = useState(payment.id)
+    const [paymentData, setPaymentData] = useState({
+        reservation_id: payment.reservation_id,
+        amount: payment.amount,
+        payment_method: payment.payment_method,
+        status: payment.status
+    })
+
+    const handleUpdatePayment = (payment, id) => {
+        updatePayment(payment, id)
+        setOpen(false)
+    }
 
     return (
         <>
@@ -30,7 +45,7 @@ const PaymentRow = ({ payment }) => {
             <td className='px-6 py-4'>{formatDate(payment.created_at)}</td>
             <td className='px-6 py-4 flex gap-2 justify-center items-center'>
                 <button
-                    // onClick={() => setOpen(true)}
+                    onClick={() => setOpen(true)}
                     className="bg-gray-900 font-medium text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-1 text-xs cursor-pointer"
                 >
                     <EditNoteOutlinedIcon fontSize='small' />Editar
@@ -43,6 +58,13 @@ const PaymentRow = ({ payment }) => {
                 </button>
             </td>
         </tr>
+        <UpdatePaymentModal
+            open={open}
+            setOpen={setOpen}
+            payment={paymentData}
+            paymentID={paymentID}
+            handleUpdatePayment={handleUpdatePayment}
+        />
         </>
     )
 }
