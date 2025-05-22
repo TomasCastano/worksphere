@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage/HomePage"
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
 import { UsersProvider } from "./providers/UsersProvider"
 import { SpacesProvider } from "./providers/SpacesProvider"
+import { PaymentsProvider } from "./providers/PaymentsProvider"
 
 function App() {
 	return (
@@ -18,7 +19,9 @@ function App() {
                             <ProtectedRoute>
                                 <UsersProvider>
                                     <SpacesProvider>
-                                        <HomePage />
+                                        <PaymentsProvider>
+                                            <HomePage />
+                                        </PaymentsProvider>
                                     </SpacesProvider>
                                 </UsersProvider>
                             </ProtectedRoute>

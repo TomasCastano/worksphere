@@ -30,9 +30,15 @@ const CreateUserModal = ({ open, setOpen, handleCreateUser }) => {
                     </div>
                     <div className="flex flex-col gap-1">
                         <label htmlFor="rol" className="text-sm font-medium text-gray-700">Rol</label>
-                        <select name="rol" id="rol" onChange={(e) => setUser({...user, rol_id: e.target.value})} className="p-3 rounded-md border border-gray-300 bg-gray-50 outline-none focus:border-gray-500">
-                            <option value="1">Admin</option>
-                            <option value="2">User</option>
+                        <select
+                            name="rol"
+                            id="rol"
+                            value={user.rol_id}
+                            onChange={(e) => setUser({...user, rol_id: Number(e.target.value)})}
+                            className="p-3 rounded-md border border-gray-300 bg-gray-50 outline-none focus:border-gray-500"
+                        >
+                            <option value="1">Administrador</option>
+                            <option value="2">Usuario</option>
                         </select>
                     </div>
                     <button type="submit" className="bg-gray-900 text-white p-3 rounded-md mt-6 hover:bg-gray-800 transition-colors">Crear</button>

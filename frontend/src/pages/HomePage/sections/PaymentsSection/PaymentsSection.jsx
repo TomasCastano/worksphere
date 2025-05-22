@@ -1,8 +1,42 @@
-import React from 'react'
+import { useState } from 'react'
+import { usePayments } from '../../../../providers/PaymentsProvider'
+import PaymentsTable from './components/PaymentsTable/PaymentsTable'
+import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined'
+import CreatePaymentModal from './components/CreatePaymentModal/CreatePaymentModal'
 
 const PaymentsSection = () => {
+    const { payments, createPayment } = usePayments()
+    const [open, setOpen] = useState(false)
+
+    const handleCreatePayment = (payment) => {
+        createPayment(payment)
+        setOpen(false)
+    }
+
     return (
-        <div>PaymentsSection</div>
+        <>
+        <section className="p-10 flex flex-col gap-5 overflow-hidden w-full">
+            <h2 className="text-2xl font-bold">Administración de pagos</h2>
+            <div className="flex justify-between items-center gap-2">
+                <input
+                    className="py-2 px-3 rounded-md border border-gray-200 bg-white outline-none focus:border-gray-500 w-1/2"
+                    type="text"
+                    placeholder="Buscar pago"
+                />
+                <button
+                    className="bg-gray-900 text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-2 text-sm cursor-pointer"
+                    onClick={() => setOpen(true)}
+                >
+                    <AddCardOutlinedIcon fontSize="small" />
+                    Agregar pago
+                </button>
+            </div>
+            <div className="p-5 bg-white rounded-md border border-gray-200 shadow-xs w-full overflow-x-auto">
+                <PaymentsTable payments={payments} />
+            </div>
+        </section>
+        <CreatePaymentModal open={open} setOpen={setOpen} handleCreatePayment={handleCreatePayment} />
+        </>
     )
 }
 
