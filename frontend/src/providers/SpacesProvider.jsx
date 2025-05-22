@@ -28,7 +28,6 @@ export const SpacesProvider = ({ children }) => {
         }
     }
 
-
     const getSpaceById = (id) => {
         return spaces.find((space) => space.id === id)
     }

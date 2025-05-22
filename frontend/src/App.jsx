@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
 import { UsersProvider } from "./providers/UsersProvider"
 import { SpacesProvider } from "./providers/SpacesProvider"
 import { PaymentsProvider } from "./providers/PaymentsProvider"
+import { BookingsProvider } from "./providers/BookingsProvider"
 
 function App() {
 	return (
@@ -20,7 +21,9 @@ function App() {
                                 <UsersProvider>
                                     <SpacesProvider>
                                         <PaymentsProvider>
-                                            <HomePage />
+                                            <BookingsProvider>
+                                                <HomePage />
+                                            </BookingsProvider>
                                         </PaymentsProvider>
                                     </SpacesProvider>
                                 </UsersProvider>
