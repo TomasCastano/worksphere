@@ -12,7 +12,7 @@ const UpdateSpaceModal = ({ open, setOpen, space, spaceID, handleUpdateSpace }) 
     const handleChange = (e) => {
         const value = e.target.type === 'number' 
             ? parseInt(e.target.value) || 0 
-            : e.target.value;
+            : e.target.value
             
         setSpaceUpdate({
             ...spaceUpdate,

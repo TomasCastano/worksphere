@@ -3,11 +3,11 @@ import Cookies from "js-cookie"
 
 export const getUsers = async () => {
     try {
-        const response = await axiosInstance.get('/users', { headers: { Authorization: `Bearer ${Cookies.get("token")}` } });
-        return response.data;
+        const response = await axiosInstance.get('/users', { headers: { Authorization: `Bearer ${Cookies.get("token")}` } })
+        return response.data
     } catch (error) {
-        console.error('Error al obtener los usuarios:', error.response?.data || error.message);
-        throw error;
+        console.error('Error al obtener los usuarios:', error.response?.data || error.message)
+        throw error
     }
 }
 

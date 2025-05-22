@@ -1,5 +1,5 @@
 import React from 'react'
-import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
+import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone'
 import CreateSpaceModal from '../CreateSpaceModal/CreateSpaceModal'
 
 const CreateSpaceCard = ({ open, setOpen, handleCreateSpace }) => {

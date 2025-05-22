@@ -2,11 +2,11 @@ import workspaceImage from '../../../../../../assets/images/workspace.webp'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined'
 import PaymentsOutlinedIcon from '@mui/icons-material/PaymentsOutlined'
-import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useSpaces } from '../../../../../../providers/SpacesProvider'
-import UpdateSpaceModal from '../UpdateSpaceModal/UpdateSpaceModal';
-import { useState } from 'react';
+import UpdateSpaceModal from '../UpdateSpaceModal/UpdateSpaceModal'
+import { useState } from 'react'
 
 const SpacesCard = ({ name, location, capacity, price, id }) => {
 
