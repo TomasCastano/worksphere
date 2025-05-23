@@ -5,13 +5,15 @@ import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined'
 import CreateBookingModal from './components/CreateBookingModal/CreateBookingModal'
 
 const BookingsSection = () => {
-    const { bookings, createBooking } = useBookings()
+    const { bookings, createBooking, deleteBooking } = useBookings()
     const [open, setOpen] = useState(false)
 
     const handleCreateBooking = (booking) => {
         createBooking(booking)
         setOpen(false)
     }
+
+    console.log(bookings)
 
     return (
         <section className="p-10 flex flex-col gap-5 overflow-hidden w-full">
@@ -40,6 +42,8 @@ const BookingsSection = () => {
                         status={booking.estado}
                         initDate={booking.fecha_inicio}
                         endDate={booking.fecha_fin}
+                        id={booking.id}
+                        deleteBooking={deleteBooking}
                     />
                 ))}
                 <CreateBookingModal open={open} setOpen={setOpen} handleCreateBooking={handleCreateBooking} />
