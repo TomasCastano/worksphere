@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useBookings } from '../../../../providers/BookingsProvider'
 import BookingCard from './components/BookingCard/BookingCard'
-// import CreateBookingModal from './components/CreateBookingModal/CreateBookingModal'
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined'
 import CreateBookingModal from './components/CreateBookingModal/CreateBookingModal'
 

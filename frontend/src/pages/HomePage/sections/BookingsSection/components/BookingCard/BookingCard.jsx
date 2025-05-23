@@ -6,23 +6,23 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useBookings } from '../../../../../../providers/BookingsProvider'
 
 const formatDate = (dateString) => {
-  const date = new Date(dateString)
-  const options = { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric'
-  }
-  return date.toLocaleDateString('es-ES', options)
+    const date = new Date(dateString)
+    const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric'
+    }
+    return date.toLocaleDateString('es-ES', options)
 }
 
 const formatTime = (dateString) => {
-  const date = new Date(dateString)
-  const options = {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: true
-  }
-  return date.toLocaleTimeString('es-ES', options)
+    const date = new Date(dateString)
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    }
+    return date.toLocaleTimeString('es-ES', options)
 }
 
 const BookingCard = ({ space, user, email, initDate, endDate, status, id }) => {
