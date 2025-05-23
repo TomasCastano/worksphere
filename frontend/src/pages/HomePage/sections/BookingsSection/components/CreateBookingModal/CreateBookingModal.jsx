@@ -31,7 +31,7 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
             <div className="p-10 flex flex-col gap-5">
                 <h3 className="text-2xl font-bold">Agregar una reserva</h3>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-[500px]">
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <label htmlFor="space" className="text-sm font-medium text-gray-700">Espacio</label>
                         <select
                             id="space"
@@ -49,7 +49,7 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             ))}
                         </select>
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <label htmlFor="user" className="text-sm font-medium text-gray-700">Usuario</label>
                         <select
                             id="user"
@@ -67,7 +67,7 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             ))}
                         </select>
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <label htmlFor="initDate" className="text-sm font-medium text-gray-700">
                             Fecha y hora de inicio
                         </label>
@@ -84,7 +84,7 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                     />
                     </div>
 
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <label htmlFor="endDate" className="text-sm font-medium text-gray-700">
                             Fecha y hora de finalización
                         </label>
@@ -92,6 +92,7 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             type="datetime-local"
                             id="endDate"
                             name="endDate"
+                            min={booking.initDate}
                             value={booking.endDate}
                             onChange={(e) => setBooking({
                                 ...booking,
@@ -100,7 +101,7 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                     </div> 
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <label htmlFor="status" className="text-sm font-medium text-gray-700">
                             Estado
                         </label>

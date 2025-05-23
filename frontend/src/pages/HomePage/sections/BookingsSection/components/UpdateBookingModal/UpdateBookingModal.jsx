@@ -16,7 +16,6 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
         status: ""
     })
 
-    // Actualizar el estado cuando cambie la reserva inicial
     useEffect(() => {
         if (initialBooking) {
             setBooking({
@@ -48,7 +47,7 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
             <div className="p-10 flex flex-col gap-5">
                 <h3 className="text-2xl font-bold">Actualizar reserva</h3>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-[500px]">
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <label htmlFor="space" className="text-sm font-medium text-gray-700">Espacio</label>
                         <select
                             id="space"
@@ -66,7 +65,7 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                             ))}
                         </select>
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <label htmlFor="user" className="text-sm font-medium text-gray-700">Usuario</label>
                         <select
                             id="user"
@@ -84,7 +83,7 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                             ))}
                         </select>
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <label htmlFor="initDate" className="text-sm font-medium text-gray-700">
                             Fecha y hora de inicio
                         </label>
@@ -100,7 +99,7 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                             className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <label htmlFor="endDate" className="text-sm font-medium text-gray-700">
                             Fecha y hora de finalización
                         </label>
@@ -108,6 +107,7 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                             type="datetime-local"
                             id="endDate"
                             name="endDate"
+                            min={booking.initDate}
                             value={booking.endDate ? booking.endDate.substring(0, 16) : ''}
                             onChange={(e) => setBooking({
                                 ...booking,
@@ -116,7 +116,7 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                             className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                     </div> 
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <label htmlFor="status" className="text-sm font-medium text-gray-700">
                             Estado
                         </label>
