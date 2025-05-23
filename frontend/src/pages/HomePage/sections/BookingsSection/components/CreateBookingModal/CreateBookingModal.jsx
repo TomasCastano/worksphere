@@ -3,6 +3,7 @@ import { useSpaces } from '../../../../../../providers/SpacesProvider'
 import { useUsers } from '../../../../../../providers/UsersProvider'
 import Modal from '../../../../../../components/Modal/Modal'
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined'
+import formatDate from '../../../../../../utils/formatDate'
 
 const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
     const { spaces } = useSpaces()
@@ -75,15 +76,10 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             id="initDate"
                             name="initDate"
                             value={booking.initDate}
-                            onChange={(e) => {
-                                const date = new Date(e.target.value);
-                                const timezoneOffset = date.getTimezoneOffset() * 60000;
-                                const localISOTime = (new Date(date - timezoneOffset)).toISOString().slice(0, -1);
-                                setBooking({ 
-                                    ...booking, 
-                                    initDate: `${localISOTime}-05:00` 
-                                });
-                            }}
+                            onChange={(e) => setBooking({ 
+                                ...booking, 
+                                initDate: formatDate(e.target.value) 
+                            })}
                             className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                     </div>
@@ -97,15 +93,10 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             id="endDate"
                             name="endDate"
                             value={booking.endDate}
-                            onChange={(e) => {
-                                const date = new Date(e.target.value);
-                                const timezoneOffset = date.getTimezoneOffset() * 60000;
-                                const localISOTime = (new Date(date - timezoneOffset)).toISOString().slice(0, -1);
-                                setBooking({ 
-                                    ...booking, 
-                                    endDate: `${localISOTime}-05:00` 
-                                });
-                            }}
+                            onChange={(e) => setBooking({
+                                ...booking,
+                                endDate: formatDate(e.target.value)
+                            })}
                             className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                     </div> 

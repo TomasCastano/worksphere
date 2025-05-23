@@ -13,8 +13,6 @@ const BookingsSection = () => {
         setOpen(false)
     }
 
-    console.log(bookings)
-
     return (
         <section className="p-10 flex flex-col gap-5 overflow-hidden w-full">
             <h2 className="text-2xl font-bold">Administración de reservas</h2>
