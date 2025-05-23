@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useSpaces } from '../../../../../../providers/SpacesProvider'
 import { useUsers } from '../../../../../../providers/UsersProvider'
 import Modal from '../../../../../../components/Modal/Modal'
-import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined'
+import EventOutlinedIcon from '@mui/icons-material/EventOutlined'
 import formatDate from '../../../../../../utils/formatDate'
 
 const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
@@ -118,7 +118,7 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                         </select>
                     </div>
                     <button type="submit" className="bg-gray-900 text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-2 text-sm cursor-pointer">
-                        <PersonAddOutlinedIcon fontSize="small" />
+                        <EventOutlinedIcon fontSize="small" />
                         Agregar reserva
                     </button>
                 </form>

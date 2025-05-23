@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useBookings } from '../../../../providers/BookingsProvider'
 import BookingCard from './components/BookingCard/BookingCard'
-import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined'
+import EventOutlinedIcon from '@mui/icons-material/EventOutlined'
 import CreateBookingModal from './components/CreateBookingModal/CreateBookingModal'
 
 const BookingsSection = () => {
@@ -26,7 +26,7 @@ const BookingsSection = () => {
                     className="bg-gray-900 text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-2 text-sm cursor-pointer"
                     onClick={() => setOpen(true)}
                 >
-                    <PersonAddOutlinedIcon fontSize="small" />
+                    <EventOutlinedIcon fontSize="small" />
                     Agregar reserva
                 </button>
             </div>
