@@ -18,8 +18,8 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
             estado: booking.status,
             space: { id: booking.space },
             user: { id: booking.user },
-            fecha_inicio: booking.initDate,
-            fecha_fin: booking.endDate,
+            fecha_inicio: formatDate(booking.initDate),
+            fecha_fin: formatDate(booking.endDate),
         }
         handleCreateBooking(bookingToSend)
         setOpen(false)
@@ -39,7 +39,7 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             required
                             value={booking.space}
                             onChange={(e) => setBooking({ ...booking, space: parseInt(e.target.value) })}
-                            className="mt-1 block w-full rounded-md border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         >
                             <option value="">Seleccionar espacio</option>
                             {spaces.map((space) => (
@@ -57,7 +57,7 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             required
                             value={booking.user}
                             onChange={(e) => setBooking({ ...booking, user: parseInt(e.target.value) })}
-                            className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         >
                             <option value="">Seleccionar usuario</option>
                             {users.map((user) => (
@@ -78,9 +78,9 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             value={booking.initDate}
                             onChange={(e) => setBooking({ 
                                 ...booking, 
-                                initDate: formatDate(e.target.value) 
+                                initDate: e.target.value 
                             })}
-                            className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                     </div>
 
@@ -95,9 +95,9 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             value={booking.endDate}
                             onChange={(e) => setBooking({
                                 ...booking,
-                                endDate: formatDate(e.target.value)
+                                endDate: e.target.value
                             })}
-                            className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                     </div> 
                     <div>
@@ -109,7 +109,7 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             name="status"
                             value={booking.status}
                             onChange={(e) => setBooking({ ...booking, status: e.target.value })}
-                            className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             required
                         >
                             <option value="">Seleccionar estado</option>
@@ -117,7 +117,7 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             <option value="confirmada">Confirmada</option>
                         </select>
                     </div>
-                    <button type="submit" className="bg-gray-900 text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-2 text-sm cursor-pointer">
+                    <button type="submit" className="mt-2 bg-gray-900 text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-2 text-sm cursor-pointer">
                         <EventOutlinedIcon fontSize="small" />
                         Agregar reserva
                     </button>

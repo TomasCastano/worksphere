@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useSpaces } from '../../../../../../providers/SpacesProvider'
 import { useUsers } from '../../../../../../providers/UsersProvider'
 import Modal from '../../../../../../components/Modal/Modal'
-import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
+import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined'
 import formatDate from '../../../../../../utils/formatDate'
 
 const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID, handleUpdateBooking }) => {
@@ -56,7 +56,7 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                             required
                             value={booking.space}
                             onChange={(e) => setBooking({ ...booking, space: e.target.value })}
-                            className="mt-1 block w-full rounded-md border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         >
                             <option value="">Seleccionar espacio</option>
                             {spaces.map((space) => (
@@ -74,7 +74,7 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                             required
                             value={booking.user}
                             onChange={(e) => setBooking({ ...booking, user: e.target.value })}
-                            className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         >
                             <option value="">Seleccionar usuario</option>
                             {users.map((user) => (
@@ -97,7 +97,7 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                                 ...booking, 
                                 initDate: formatDate(e.target.value) 
                             })}
-                            className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                     </div>
                     <div>
@@ -113,7 +113,7 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                                 ...booking,
                                 endDate: formatDate(e.target.value)
                             })}
-                            className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                     </div> 
                     <div>
@@ -125,7 +125,7 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                             name="status"
                             value={booking.status}
                             onChange={(e) => setBooking({ ...booking, status: e.target.value })}
-                            className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             required
                         >
                             <option value="">Seleccionar estado</option>
@@ -135,9 +135,9 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                     </div>
                     <button 
                         type="submit" 
-                        className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 w-fit flex items-center gap-2 text-sm cursor-pointer"
+                        className="mt-2 bg-gray-900 text-white px-3 py-2 rounded hover:bg-gray-800 w-fit flex items-center gap-2 text-sm cursor-pointer"
                     >
-                        <SaveOutlinedIcon fontSize="small" />
+                        <EditCalendarOutlinedIcon fontSize="small" className="text-gray-200" />
                         Actualizar reserva
                     </button>
                 </form>
