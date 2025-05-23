@@ -3,6 +3,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined'
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import { useBookings } from '../../../../../../providers/BookingsProvider'
 
 const formatDate = (dateString) => {
   const date = new Date(dateString)
@@ -24,7 +25,9 @@ const formatTime = (dateString) => {
   return date.toLocaleTimeString('es-ES', options)
 }
 
-const BookingCard = ({ space, user, email, initDate, endDate, status }) => {
+const BookingCard = ({ space, user, email, initDate, endDate, status, id }) => {
+    const { deleteBooking } = useBookings()
+
     return (
         <div className="border border-gray-200 rounded-md bg-white w-80 shadow-xs p-4">
             <header className="pb-2 flex flex-col gap-2 ">
@@ -61,7 +64,7 @@ const BookingCard = ({ space, user, email, initDate, endDate, status }) => {
                 </button>
                 <button
                     className="bg-red-500 font-medium text-white px-3 py-2 rounded hover:bg-red-400 w-fit flex items-center gap-1 text-xs cursor-pointer"
-                    // onClick={() => deleteSpace(id)}
+                    onClick={() => deleteBooking(id)}
                 >
                     <DeleteOutlineIcon fontSize='small' className="text-gray-200" />Eliminar
                 </button>
