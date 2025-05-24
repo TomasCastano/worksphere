@@ -13,8 +13,9 @@ const UserRow = ({user}) => {
     }
 
     const handleUpdateUser = (userData, id) => {
-        updateUserData(userData, id)
-        setOpen(false)
+        updateUserData(userData, id).then(() => {
+            setOpen(false)
+        })
     }
     
     return (

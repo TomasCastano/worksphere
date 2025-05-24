@@ -32,8 +32,9 @@ const BookingCard = ({ space, user, email, initDate, endDate, status, id, bookin
     const [open, setOpen] = useState(false)
 
     const handleUpdateBooking = (booking, id) => {
-        updateBooking(booking, id)
-        setOpen(false)
+        updateBooking(booking, id).then(() => {
+            setOpen(false);
+        });
     }
 
     return (

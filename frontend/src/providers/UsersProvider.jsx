@@ -34,24 +34,31 @@ export const UsersProvider = ({ children }) => {
 
     const createUser = (user) => {
         return createUserRequest(user).then((data) => {
-            // Fetch the complete user data after creation
             return getUsersRequest().then(updatedUsers => {
-                const newUser = updatedUsers.find(u => u.id === data.id);
+                const newUser = updatedUsers.find(u => u.id === data.id)
                 if (newUser) {
-                    setUsers(prevUsers => [...prevUsers, newUser]);
-                    return newUser;
+                    setUsers(prevUsers => [...prevUsers, newUser])
+                    return newUser
                 }
-                return data;
-            });
-        });
+                return data
+            })
+        })
     }
 
     const updateUserData = (user, id) => {
-        console.log("Actualizando usuario ID:", id)
-        updateUserRequest(id, user).then((data) => {
-          setUsers(users.map(u => u.id === id ? data : u))
+        return updateUserRequest(id, user).then((data) => {
+            return getUsersRequest().then(updatedUsers => {
+                const updatedUser = updatedUsers.find(u => u.id === parseInt(id))
+                if (updatedUser) {
+                    setUsers(prevUsers => 
+                        prevUsers.map(u => u.id === parseInt(id) ? updatedUser : u)
+                    )
+                    return updatedUser
+                }
+                return data
+            })
         })
-      }
+    }
 
     const deleteUser = (id) => {
         deleteUserRequest(id).then(() => {
