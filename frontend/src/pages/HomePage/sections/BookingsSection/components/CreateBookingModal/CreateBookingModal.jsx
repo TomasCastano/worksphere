@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSpaces } from '../../../../../../providers/SpacesProvider'
 import { useUsers } from '../../../../../../providers/UsersProvider'
+import { useAuth } from '../../../../../../providers/AuthProvider'
 import Modal from '../../../../../../components/Modal/Modal'
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined'
 import formatDate from '../../../../../../utils/formatDate'
@@ -8,6 +9,8 @@ import formatDate from '../../../../../../utils/formatDate'
 const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
     const { spaces } = useSpaces()
     const { users } = useUsers()
+    const { user } = useAuth()
+    const isAdmin = user?.rol_id === 1
 
     const [booking, setBooking] = useState({
     space: "",
@@ -34,6 +37,12 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
         setOpen(false)
         setBooking({ space: "", user: "", date: "", startTime: "", endTime: "", status: "" })
     }
+
+    useEffect(() => {
+        if (!isAdmin && user?.id) {
+            setBooking((prev) => ({ ...prev, user: user.id }))
+        }
+    }, [isAdmin, user])
 
     return (
         <Modal open={open} onClose={() => setOpen(false)}>
@@ -68,12 +77,18 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                             onChange={(e) => setBooking({ ...booking, user: parseInt(e.target.value) })}
                             className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         >
-                            <option value="">Seleccionar usuario</option>
-                            {users.map((user) => (
-                                <option key={user.id} value={parseInt(user.id)}>
-                                    {user.nombre}
-                                </option>
-                            ))}
+                            {isAdmin ? (
+                                <>
+                                    <option value="">Seleccionar usuario</option>
+                                    {users.map((user) => (
+                                        <option key={user.id} value={parseInt(user.id)}>
+                                            {user.nombre}
+                                        </option>
+                                    ))}
+                                </>
+                            ) : (
+                                <option value={parseInt(user.id)}>{user.nombre}</option>
+                            )}
                         </select>
                     </div>
                     <div className="flex flex-col gap-1">

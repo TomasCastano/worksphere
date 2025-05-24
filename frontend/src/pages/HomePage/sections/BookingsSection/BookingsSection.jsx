@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useBookings } from '../../../../providers/BookingsProvider'
+import { useAuth } from '../../../../providers/AuthProvider'
 import BookingCard from './components/BookingCard/BookingCard'
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined'
 import CreateBookingModal from './components/CreateBookingModal/CreateBookingModal'
@@ -7,11 +8,13 @@ import CreateBookingModal from './components/CreateBookingModal/CreateBookingMod
 const BookingsSection = () => {
     const { bookings, createBooking, deleteBooking } = useBookings()
     const [open, setOpen] = useState(false)
+    const { user } = useAuth()
+    const isAdmin = user?.rol_id === 1
 
     const handleCreateBooking = (booking) => {
         createBooking(booking).then(() => {
-            setOpen(false);
-        });
+            setOpen(false)
+        })
     }
 
     return (
@@ -31,6 +34,7 @@ const BookingsSection = () => {
                     Agregar reserva
                 </button>
             </div>
+            {isAdmin && (
             <div className="flex flex-wrap justify-center gap-5 overflow-x-auto p-10 bg-white rounded-md border border-gray-200 shadow-xs">
                 {bookings.map((booking) => (
                     <BookingCard
@@ -46,8 +50,9 @@ const BookingsSection = () => {
                         booking={booking}
                     />
                 ))}
-                <CreateBookingModal open={open} setOpen={setOpen} handleCreateBooking={handleCreateBooking} />
             </div>
+            )}
+            <CreateBookingModal open={open} setOpen={setOpen} handleCreateBooking={handleCreateBooking} />
         </section>
     )
 }

@@ -21,13 +21,13 @@ const HomePage = () => {
                         <MainSection />
                     </ProtectedRoute>
                 } />
+                <Route path="/bookings" element={
+                    <ProtectedRoute>
+                        <BookingsSection />
+                    </ProtectedRoute>
+                } />
                 {isAdmin ? (
                     <>
-                        <Route path="/bookings" element={
-                            <ProtectedRoute>
-                                <BookingsSection />
-                            </ProtectedRoute>
-                        } />
                         <Route path="/spaces" element={
                             <ProtectedRoute>
                                 <SpacesSection />
