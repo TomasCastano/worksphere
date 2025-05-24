@@ -17,6 +17,14 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
         status: ""
     })
 
+    const getLocalTimeString = (dateString) => {
+        if (!dateString) return "";
+        const date = new Date(dateString);
+        const hours = String(date.getHours()).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+        return `${hours}:${minutes}`;
+    }
+
     useEffect(() => {
         if (initialBooking) {
             const fechaInicio = initialBooking.fecha_inicio ? new Date(initialBooking.fecha_inicio) : null;
@@ -25,8 +33,8 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                 space: initialBooking.space?.id || "",
                 user: initialBooking.user?.id || "",
                 date: fechaInicio ? fechaInicio.toISOString().slice(0,10) : "",
-                startTime: fechaInicio ? fechaInicio.toISOString().slice(11,16) : "",
-                endTime: fechaFin ? fechaFin.toISOString().slice(11,16) : "",
+                startTime: getLocalTimeString(initialBooking.fecha_inicio),
+                endTime: getLocalTimeString(initialBooking.fecha_fin),
                 status: initialBooking.estado || ""
             })
         }
