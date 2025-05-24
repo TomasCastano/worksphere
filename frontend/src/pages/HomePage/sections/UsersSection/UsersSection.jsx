@@ -9,8 +9,9 @@ const UsersSection = () => {
     const [open, setOpen] = useState(false)
 
     const handleCreateUser = (user) => {
-        createUser(user)
-        setOpen(false)
+        createUser(user).then(() => {
+            setOpen(false);
+        });
     }
 
     return (

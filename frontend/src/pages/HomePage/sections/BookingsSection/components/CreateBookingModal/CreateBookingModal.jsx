@@ -9,21 +9,30 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
     const { spaces } = useSpaces()
     const { users } = useUsers()
 
-    const [booking, setBooking] = useState({space: "", user: "", initDate: "", endDate: "", status: ""})
+    const [booking, setBooking] = useState({
+    space: "",
+    user: "",
+    date: "",
+    startTime: "",
+    endTime: "",
+    status: ""
+})
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        const initDateTime = `${booking.date}T${booking.startTime}`
+        const endDateTime = `${booking.date}T${booking.endTime}`
         const bookingToSend = {
             ...booking,
             estado: booking.status,
             space: { id: booking.space },
             user: { id: booking.user },
-            fecha_inicio: formatDate(booking.initDate),
-            fecha_fin: formatDate(booking.endDate),
+            fecha_inicio: formatDate(initDateTime),
+            fecha_fin: formatDate(endDateTime),
         }
         handleCreateBooking(bookingToSend)
         setOpen(false)
-        setBooking({space: "", user: "", initDate: "", endDate: "", status: ""})
+        setBooking({ space: "", user: "", date: "", startTime: "", endTime: "", status: "" })
     }
 
     return (
@@ -68,39 +77,50 @@ const CreateBookingModal = ({ open, setOpen, handleCreateBooking }) => {
                         </select>
                     </div>
                     <div className="flex flex-col gap-1">
-                        <label htmlFor="initDate" className="text-sm font-medium text-gray-700">
-                            Fecha y hora de inicio
+                        <label htmlFor="date" className="text-sm font-medium text-gray-700">
+                            Día
                         </label>
                         <input
-                            type="datetime-local"
-                            id="initDate"
-                            name="initDate"
-                            value={booking.initDate}
-                            onChange={(e) => setBooking({ 
-                                ...booking, 
-                                initDate: e.target.value 
-                            })}
+                            type="date"
+                            id="date"
+                            name="date"
+                            value={booking.date}
+                            onChange={(e) => setBooking({ ...booking, date: e.target.value })}
                             className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    />
-                    </div>
-
-                    <div className="flex flex-col gap-1">
-                        <label htmlFor="endDate" className="text-sm font-medium text-gray-700">
-                            Fecha y hora de finalización
-                        </label>
-                        <input
-                            type="datetime-local"
-                            id="endDate"
-                            name="endDate"
-                            min={booking.initDate}
-                            value={booking.endDate}
-                            onChange={(e) => setBooking({
-                                ...booking,
-                                endDate: e.target.value
-                            })}
-                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            required
                         />
-                    </div> 
+                    </div>
+                    <div className="flex gap-2 w-full">
+                        <div className="flex flex-col gap-1 w-1/2">
+                            <label htmlFor="startTime" className="text-sm font-medium text-gray-700">
+                                Hora de inicio
+                            </label>
+                            <input
+                                type="time"
+                                id="startTime"
+                                name="startTime"
+                                value={booking.startTime}
+                                onChange={(e) => setBooking({ ...booking, startTime: e.target.value })}
+                                className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                required
+                            />
+                        </div>
+                        <div className="flex flex-col gap-1 w-1/2">
+                            <label htmlFor="endTime" className="text-sm font-medium text-gray-700">
+                                Hora de finalización
+                            </label>
+                            <input
+                                type="time"
+                                id="endTime"
+                                name="endTime"
+                                min={booking.startTime}
+                                value={booking.endTime}
+                                onChange={(e) => setBooking({ ...booking, endTime: e.target.value })}
+                                className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                required
+                            />
+                        </div>
+                    </div>
                     <div className="flex flex-col gap-1">
                         <label htmlFor="status" className="text-sm font-medium text-gray-700">
                             Estado

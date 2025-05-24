@@ -9,8 +9,9 @@ const BookingsSection = () => {
     const [open, setOpen] = useState(false)
 
     const handleCreateBooking = (booking) => {
-        createBooking(booking)
-        setOpen(false)
+        createBooking(booking).then(() => {
+            setOpen(false);
+        });
     }
 
     return (
@@ -34,14 +35,15 @@ const BookingsSection = () => {
                 {bookings.map((booking) => (
                     <BookingCard
                         key={booking.id}
-                        space={booking.space.nombre}
-                        user={booking.user.nombre}
-                        email={booking.user.email}
+                        space={booking.space?.nombre || 'Cargando...'}
+                        user={booking.user?.nombre || 'Cargando...'}
+                        email={booking.user?.email || ''}
                         status={booking.estado}
                         initDate={booking.fecha_inicio}
                         endDate={booking.fecha_fin}
                         id={booking.id}
                         deleteBooking={deleteBooking}
+                        booking={booking}
                     />
                 ))}
                 <CreateBookingModal open={open} setOpen={setOpen} handleCreateBooking={handleCreateBooking} />

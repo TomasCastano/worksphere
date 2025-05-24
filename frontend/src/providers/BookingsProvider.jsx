@@ -33,9 +33,17 @@ export const BookingsProvider = ({children}) => {
     }
 
     const createBooking = (booking) => {
-        createBookingRequest(booking).then((data) => {
-            setBookings([...bookings, data])
-        })
+        return createBookingRequest(booking).then((data) => {
+            // Obtener los datos completos de la reserva recién creada
+            return getBookingsRequest().then(updatedBookings => {
+                const newBooking = updatedBookings.find(b => b.id === data.id);
+                if (newBooking) {
+                    setBookings(prevBookings => [...prevBookings, newBooking]);
+                    return newBooking;
+                }
+                return data;
+            });
+        });
     }
 
     const updateBooking = (booking, id) => {

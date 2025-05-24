@@ -11,18 +11,22 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
     const [booking, setBooking] = useState({
         space: "",
         user: "",
-        initDate: "",
-        endDate: "",
+        date: "",
+        startTime: "",
+        endTime: "",
         status: ""
     })
 
     useEffect(() => {
         if (initialBooking) {
+            const fechaInicio = initialBooking.fecha_inicio ? new Date(initialBooking.fecha_inicio) : null;
+            const fechaFin = initialBooking.fecha_fin ? new Date(initialBooking.fecha_fin) : null;
             setBooking({
                 space: initialBooking.space?.id || "",
                 user: initialBooking.user?.id || "",
-                initDate: initialBooking.fecha_inicio || "",
-                endDate: initialBooking.fecha_fin || "",
+                date: fechaInicio ? fechaInicio.toISOString().slice(0,10) : "",
+                startTime: fechaInicio ? fechaInicio.toISOString().slice(11,16) : "",
+                endTime: fechaFin ? fechaFin.toISOString().slice(11,16) : "",
                 status: initialBooking.estado || ""
             })
         }
@@ -30,13 +34,15 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        const initDateTime = `${booking.date}T${booking.startTime}`
+        const endDateTime = `${booking.date}T${booking.endTime}`
         const bookingToSend = {
             ...booking,
             estado: booking.status,
             space: { id: parseInt(booking.space) },
             user: { id: parseInt(booking.user) },
-            fecha_inicio: booking.initDate,
-            fecha_fin: booking.endDate,
+            fecha_inicio: formatDate(initDateTime),
+            fecha_fin: formatDate(endDateTime),
         }
         handleUpdateBooking(bookingToSend, bookingID)
         setOpen(false)
@@ -84,38 +90,50 @@ const UpdateBookingModal = ({ open, setOpen, booking: initialBooking, bookingID,
                         </select>
                     </div>
                     <div className="flex flex-col gap-1">
-                        <label htmlFor="initDate" className="text-sm font-medium text-gray-700">
-                            Fecha y hora de inicio
+                        <label htmlFor="date" className="text-sm font-medium text-gray-700">
+                            Día
                         </label>
                         <input
-                            type="datetime-local"
-                            id="initDate"
-                            name="initDate"
-                            value={booking.initDate ? booking.initDate.substring(0, 16) : ''}
-                            onChange={(e) => setBooking({ 
-                                ...booking, 
-                                initDate: formatDate(e.target.value) 
-                            })}
+                            type="date"
+                            id="date"
+                            name="date"
+                            value={booking.date}
+                            onChange={(e) => setBooking({ ...booking, date: e.target.value })}
                             className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            required
                         />
                     </div>
-                    <div className="flex flex-col gap-1">
-                        <label htmlFor="endDate" className="text-sm font-medium text-gray-700">
-                            Fecha y hora de finalización
-                        </label>
-                        <input
-                            type="datetime-local"
-                            id="endDate"
-                            name="endDate"
-                            min={booking.initDate}
-                            value={booking.endDate ? booking.endDate.substring(0, 16) : ''}
-                            onChange={(e) => setBooking({
-                                ...booking,
-                                endDate: formatDate(e.target.value)
-                            })}
-                            className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        />
-                    </div> 
+                    <div className="flex gap-2 w-full">
+                        <div className="flex flex-col gap-1 w-1/2">
+                            <label htmlFor="startTime" className="text-sm font-medium text-gray-700">
+                                Hora de inicio
+                            </label>
+                            <input
+                                type="time"
+                                id="startTime"
+                                name="startTime"
+                                value={booking.startTime}
+                                onChange={(e) => setBooking({ ...booking, startTime: e.target.value })}
+                                className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                required
+                            />
+                        </div>
+                        <div className="flex flex-col gap-1 w-1/2">
+                            <label htmlFor="endTime" className="text-sm font-medium text-gray-700">
+                                Hora de finalización
+                            </label>
+                            <input
+                                type="time"
+                                id="endTime"
+                                name="endTime"
+                                min={booking.startTime}
+                                value={booking.endTime}
+                                onChange={(e) => setBooking({ ...booking, endTime: e.target.value })}
+                                className="block w-full rounded-md border border-gray-300 outline-none px-3 py-2 text-base text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                required
+                            />
+                        </div>
+                    </div>
                     <div className="flex flex-col gap-1">
                         <label htmlFor="status" className="text-sm font-medium text-gray-700">
                             Estado

@@ -33,9 +33,17 @@ export const UsersProvider = ({ children }) => {
     }
 
     const createUser = (user) => {
-        createUserRequest(user).then((data) => {
-            setUsers([...users, data])
-        })
+        return createUserRequest(user).then((data) => {
+            // Fetch the complete user data after creation
+            return getUsersRequest().then(updatedUsers => {
+                const newUser = updatedUsers.find(u => u.id === data.id);
+                if (newUser) {
+                    setUsers(prevUsers => [...prevUsers, newUser]);
+                    return newUser;
+                }
+                return data;
+            });
+        });
     }
 
     const updateUserData = (user, id) => {
