@@ -16,6 +16,8 @@ const Sidebar = () => {
     const navigate = useNavigate()
     const { logout, user } = useAuth()
 
+    const isAdmin = user?.rol_id === 1
+
     const location = useLocation()
     const path = location.pathname
 
@@ -35,12 +37,12 @@ const Sidebar = () => {
             <div className="p-4 flex flex-col h-full gap-2 items-start">
                 <ul className="flex flex-col gap-2 w-full">
                     <Link to="/home" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><HomeOutlinedIcon fontSize="small" />Inicio</Link>
-                    <Link to="/home/bookings" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/bookings' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><CalendarTodayOutlinedIcon fontSize="small" />Reservas</Link>
-                    <Link to="/home/spaces" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/spaces' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><MapOutlinedIcon fontSize="small" />Espacios</Link>
-                    <Link to="/home/payments" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/payments' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><CreditCardOutlinedIcon fontSize="small" />Pagos</Link>
-                    <Link to="/home/users" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/users' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><PeopleAltOutlinedIcon fontSize="small" />Usuarios</Link>
+                    {isAdmin && <Link to="/home/bookings" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/bookings' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><CalendarTodayOutlinedIcon fontSize="small" />Reservas</Link>}
+                    {isAdmin && <Link to="/home/spaces" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/spaces' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><MapOutlinedIcon fontSize="small" />Espacios</Link>}
+                    {isAdmin && <Link to="/home/payments" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/payments' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><CreditCardOutlinedIcon fontSize="small" />Pagos</Link>}
+                    {isAdmin && <Link to="/home/users" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/users' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><PeopleAltOutlinedIcon fontSize="small" />Usuarios</Link>}
                     <Link to="/home/profile" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/profile' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><PersonOutlinedIcon fontSize="small" />Mi perfil</Link>
-                    <Link to="/home/settings" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/settings' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><SettingsOutlinedIcon fontSize="small" />Configuración</Link>
+                    {isAdmin && <Link to="/home/settings" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/settings' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><SettingsOutlinedIcon fontSize="small" />Configuración</Link>}
                 </ul>
             </div>
             <footer className="p-4 w-full flex flex-row items-center justify-between gap-2 border-t border-gray-200">

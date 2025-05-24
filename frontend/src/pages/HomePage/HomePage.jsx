@@ -5,17 +5,13 @@ import BookingsSection from './sections/BookingsSection/BookingsSection'
 import SpacesSection from './sections/SpacesSection/SpacesSection'
 import PaymentsSection from './sections/PaymentsSection/PaymentsSection'
 import UsersSection from './sections/UsersSection/UsersSection'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { useAuth } from '../../providers/AuthProvider'
 
-const AdminRoute = ({ element }) => {
+const HomePage = () => {
     const { user } = useAuth()
     const isAdmin = user?.rol_id === 1
-    
-    return isAdmin ? element : <Navigate to="/home" replace />
-}
 
-const HomePage = () => {
     return (
         <main className='flex h-[100dvh]'>
             <Sidebar />
@@ -25,38 +21,30 @@ const HomePage = () => {
                         <MainSection />
                     </ProtectedRoute>
                 } />
-                <Route 
-                    path="/bookings" 
-                    element={
-                        <ProtectedRoute>
-                            <AdminRoute element={<BookingsSection />} />
-                        </ProtectedRoute>
-                    } 
-                />
-                <Route 
-                    path="/spaces" 
-                    element={
-                        <ProtectedRoute>
-                            <AdminRoute element={<SpacesSection />} />
-                        </ProtectedRoute>
-                    } 
-                />
-                <Route 
-                    path="/payments" 
-                    element={
-                        <ProtectedRoute>
-                            <AdminRoute element={<PaymentsSection />} />
-                        </ProtectedRoute>
-                    } 
-                />
-                <Route 
-                    path="/users" 
-                    element={
-                        <ProtectedRoute>
-                            <AdminRoute element={<UsersSection />} />
-                        </ProtectedRoute>
-                    } 
-                />
+                {isAdmin ? (
+                    <>
+                        <Route path="/bookings" element={
+                            <ProtectedRoute>
+                                <BookingsSection />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/spaces" element={
+                            <ProtectedRoute>
+                                <SpacesSection />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/payments" element={
+                            <ProtectedRoute>
+                                <PaymentsSection />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/users" element={
+                            <ProtectedRoute>
+                                <UsersSection />
+                            </ProtectedRoute>
+                        } />
+                    </>
+                ) : null}
             </Routes>
         </main>
     )

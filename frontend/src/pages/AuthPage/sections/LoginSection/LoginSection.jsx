@@ -9,7 +9,6 @@ const LoginSection = ({ email, password, setEmail, setPassword, handleSubmit }) 
 				id="email" 
 				placeholder="usuario@email.com"
 				value={email}
-				autoComplete="off"
 				onChange={(e) => setEmail(e.target.value)}
 				/>
 			</div>
