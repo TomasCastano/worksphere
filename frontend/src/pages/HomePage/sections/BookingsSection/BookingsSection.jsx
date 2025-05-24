@@ -34,23 +34,45 @@ const BookingsSection = () => {
                     Agregar reserva
                 </button>
             </div>
-            {isAdmin && (
-            <div className="flex flex-wrap justify-center gap-5 overflow-x-auto p-10 bg-white rounded-md border border-gray-200 shadow-xs">
-                {bookings.map((booking) => (
-                    <BookingCard
-                        key={booking.id}
-                        space={booking.space?.nombre || 'Cargando...'}
-                        user={booking.user?.nombre || 'Cargando...'}
-                        email={booking.user?.email || ''}
-                        status={booking.estado}
-                        initDate={booking.fecha_inicio}
-                        endDate={booking.fecha_fin}
-                        id={booking.id}
-                        deleteBooking={deleteBooking}
-                        booking={booking}
-                    />
-                ))}
-            </div>
+            {isAdmin ? (
+                <div className="flex flex-wrap justify-center gap-5 overflow-x-auto p-10 bg-white rounded-md border border-gray-200 shadow-xs">
+                    {bookings.filter((booking) => booking.user.id === user.id).map((booking) => (
+                        <BookingCard
+                            key={booking.id}
+                            space={booking.space?.nombre || 'Cargando...'}
+                            user={booking.user?.nombre || 'Cargando...'}
+                            email={booking.user?.email || ''}
+                            status={booking.estado}
+                            initDate={booking.fecha_inicio}
+                            endDate={booking.fecha_fin}
+                            id={booking.id}
+                            deleteBooking={deleteBooking}
+                            booking={booking}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <>  
+                    <h4 className="text-xl font-medium">Tus reservas</h4>
+                    <div className="flex flex-wrap justify-center gap-5 overflow-x-auto p-10 bg-white rounded-md border border-gray-200 shadow-xs">
+                        {bookings
+                        .filter((booking) => booking.user.id === user.id)
+                        .map((booking) => (
+                            <BookingCard
+                                key={booking.id}
+                                space={booking.space?.nombre || 'Cargando...'}
+                                user={booking.user?.nombre || 'Cargando...'}
+                                email={booking.user?.email || ''}
+                                status={booking.estado}
+                                initDate={booking.fecha_inicio}
+                                endDate={booking.fecha_fin}
+                                id={booking.id}
+                                deleteBooking={deleteBooking}
+                                booking={booking}
+                            />
+                        ))}
+                    </div>
+                </>
             )}
             <CreateBookingModal open={open} setOpen={setOpen} handleCreateBooking={handleCreateBooking} />
         </section>
