@@ -5,13 +5,14 @@ import EventOutlinedIcon from '@mui/icons-material/EventOutlined'
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import Spaces from './components/Spaces/Spaces'
 import WhyUs from './components/WhyUs/WhyUs'
+import Footer from './components/Footer/Footer'
 
 const MainSection = () => {
     const { user } = useAuth()
     const navigate = useNavigate()
     return (
         <section className="w-full flex-1 h-[100dvh]">
-            <div className='flex flex-col items-center px-10 py-15 h-full gap-15 overflow-y-auto overflow-x-hidden'>
+            <div className='flex flex-col items-center px-10 py-15 h-full gap-20 overflow-y-auto overflow-x-hidden'>
                 <header className="flex flex-col items-center gap-8 max-w-[800px] w-full">
                     <p className="text-xs font-medium py-2 px-4 bg-teal-100 rounded-2xl text-teal-900 mb-3">¡Bienvenido de nuevo <span className='font-semibold'>{user?.nombre}</span>!</p>
                     <h1 className="text-gray-900 font-bold text-5xl text-center w-full">Tu espacio de trabajo <span className='text-teal-900'>perfecto</span> te espera</h1>
@@ -29,22 +30,23 @@ const MainSection = () => {
                         </button>
                     </div>
                 </header>
-                <div className='flex gap-4 items-center justify-between max-w-[800px] w-full my-5'>
-                    <div className='flex flex-col gap-2 items-center text-center'>
+                <div className='flex gap-4 items-center justify-center max-w-[800px] w-full my-5'>
+                    <div className='p-5 flex flex-col gap-2 items-center text-center bg-white border border-gray-200 rounded-md shadow-xs hover:shadow-md transition-shadow'>
                         <span className='text-3xl font-bold text-teal-900'>+50</span>
-                        <p>Espacios disponibles</p>
+                        <p className='text-gray-600 text-sm'>Espacios disponibles</p>
                     </div>
-                    <div className='flex flex-col gap-2 items-center text-center'>
+                    <div className='p-5 flex flex-col gap-2 items-center text-center bg-white border border-gray-200 rounded-md shadow-xs hover:shadow-md transition-shadow'>
                         <span className='text-3xl font-bold text-teal-900'>24/7</span>
-                        <p>Acceso disponible</p>
+                        <p className='text-gray-600 text-sm'>Acceso disponible</p>
                     </div>
-                    <div className='flex flex-col gap-2 items-center text-center'>
+                    <div className='p-5 flex flex-col gap-2 items-center text-center bg-white border border-gray-200 rounded-md shadow-xs hover:shadow-md transition-shadow'>
                         <span className='text-3xl font-bold text-teal-900'>98%</span>
-                        <p>Satisfacción al cliente</p>
+                        <p className='text-gray-600 text-sm'>Satisfacción al cliente</p>
                     </div>
                 </div>
                 <Spaces />
                 <WhyUs />
+                <Footer />
             </div>
         </section>
     )
