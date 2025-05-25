@@ -26,13 +26,13 @@ const HomePage = () => {
                         <BookingsSection />
                     </ProtectedRoute>
                 } />
+                <Route path="/spaces" element={
+                    <ProtectedRoute>
+                        <SpacesSection />
+                    </ProtectedRoute>
+                } />
                 {isAdmin ? (
                     <>
-                        <Route path="/spaces" element={
-                            <ProtectedRoute>
-                                <SpacesSection />
-                            </ProtectedRoute>
-                        } />
                         <Route path="/payments" element={
                             <ProtectedRoute>
                                 <PaymentsSection />
