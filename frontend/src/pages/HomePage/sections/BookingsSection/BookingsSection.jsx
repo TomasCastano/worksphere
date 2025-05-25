@@ -36,11 +36,14 @@ const BookingsSection = () => {
             </div>
             {isAdmin ? (
                 <div className="flex flex-wrap justify-center gap-5 overflow-x-auto p-10 bg-white rounded-md border border-gray-200 shadow-xs">
-                    {bookings.filter((booking) => booking.user.id === user.id).map((booking) => (
-                        <BookingCard
-                            key={booking.id}
-                            space={booking.space?.nombre || 'Cargando...'}
-                            userData={booking.user?.nombre || 'Cargando...'}
+                    {bookings.length === 0 ? (
+                        <p className="text-gray-600 font-medium text-base">No hay reservas en este momento</p>
+                    ) : (
+                        bookings.map((booking) => (
+                            <BookingCard
+                                key={booking.id}
+                                space={booking.space?.nombre || 'Cargando...'}
+                                userData={booking.user?.nombre || 'Cargando...'}
                             email={booking.user?.email || ''}
                             status={booking.estado}
                             initDate={booking.fecha_inicio}
@@ -49,28 +52,32 @@ const BookingsSection = () => {
                             deleteBooking={deleteBooking}
                             booking={booking}
                         />
-                    ))}
+                    )))}
                 </div>
             ) : (
                 <>  
                     <h4 className="text-xl font-medium">Tus reservas</h4>
                     <div className="flex flex-wrap justify-center gap-5 overflow-x-auto p-10 bg-white rounded-md border border-gray-200 shadow-xs">
-                        {bookings
-                        .filter((booking) => booking.user.id === user.id)
-                        .map((booking) => (
-                            <BookingCard
-                                key={booking.id}
-                                space={booking.space?.nombre || 'Cargando...'}
-                                user={booking.user?.nombre || 'Cargando...'}
-                                email={booking.user?.email || ''}
-                                status={booking.estado}
-                                initDate={booking.fecha_inicio}
-                                endDate={booking.fecha_fin}
-                                id={booking.id}
-                                deleteBooking={deleteBooking}
-                                booking={booking}
-                            />
-                        ))}
+                        {bookings.filter((booking) => booking.user.id === user.id).length === 0 ? (
+                            <p className="text-gray-600 font-medium text-base">No tienes reservas en este momento</p>
+                        ) : (
+                            bookings
+                            .filter((booking) => booking.user.id === user.id)
+                            .map((booking) => (
+                                <BookingCard
+                                    key={booking.id}
+                                    space={booking.space?.nombre || 'Cargando...'}
+                                    user={booking.user?.nombre || 'Cargando...'}
+                                    email={booking.user?.email || ''}
+                                    status={booking.estado}
+                                    initDate={booking.fecha_inicio}
+                                    endDate={booking.fecha_fin}
+                                    id={booking.id}
+                                    deleteBooking={deleteBooking}
+                                    booking={booking}
+                                />
+                            ))
+                        )}
                     </div>
                 </>
             )}
