@@ -44,13 +44,13 @@ const BookingsSection = () => {
                                 key={booking.id}
                                 space={booking.space?.nombre || 'Cargando...'}
                                 userData={booking.user?.nombre || 'Cargando...'}
-                            email={booking.user?.email || ''}
-                            status={booking.estado}
-                            initDate={booking.fecha_inicio}
-                            endDate={booking.fecha_fin}
-                            id={booking.id}
-                            deleteBooking={deleteBooking}
-                            booking={booking}
+                                email={booking.user?.email || ''}
+                                status={booking.estado}
+                                initDate={booking.fecha_inicio}
+                                endDate={booking.fecha_fin}
+                                id={booking.id}
+                                deleteBooking={deleteBooking}
+                                booking={booking}
                         />
                     )))}
                 </div>
