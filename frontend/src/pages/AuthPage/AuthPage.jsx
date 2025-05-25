@@ -27,7 +27,7 @@ const AuthPage = () => {
 			<div className="max-w-md w-full bg-white p-10 rounded-md flex flex-col gap-10 border border-gray-200 border-t-[10px] border-t-gray-900">
 				<header className="flex flex-col gap-1 items-center justify-center">
 					<img className='w-16 h-auto' src={logo} alt="logo" />
-					<h1 className="text-4xl font-bold text-gray-900">Worksphere</h1>
+					<h1 className="text-4xl font-bold text-gray-900">WorkSphere</h1>
 					<p className="text-sm mt-1 text-gray-500">Gestión de reservas para espacios de coworking</p>
 				</header>
 				<LoginSection 

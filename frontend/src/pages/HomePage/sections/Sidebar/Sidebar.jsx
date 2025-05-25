@@ -31,7 +31,7 @@ const Sidebar = () => {
             <header className="px-4 py-6 flex flex-col items-center justify-center border-b border-gray-200">
                 <Link to="/home" className="flex flex-col items-center gap-1">
                     <img className='w-9 h-auto object-contain' src={logo} alt="logo" />
-                    <h1 className="text-xl font-bold text-gray-900">Worksphere</h1>
+                    <h1 className="text-xl font-bold text-gray-900">WorkSphere</h1>
                 </Link>
             </header>
             <div className="p-4 flex flex-col h-full gap-2 items-start">

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined'
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import Spaces from './components/Spaces/Spaces'
+import WhyUs from './components/WhyUs/WhyUs'
 
 const MainSection = () => {
     const { user } = useAuth()
@@ -43,6 +44,7 @@ const MainSection = () => {
                     </div>
                 </div>
                 <Spaces />
+                <WhyUs />
             </div>
         </section>
     )
