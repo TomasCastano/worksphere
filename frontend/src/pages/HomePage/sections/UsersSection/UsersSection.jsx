@@ -27,7 +27,7 @@ const UsersSection = () => {
                     Agregar usuario
                 </button>
             </div>
-            <div className="p-10 bg-white rounded-md border border-gray-200 shadow-xs w-full overflow-x-auto">
+            <div className="p-5 bg-white rounded-md border border-gray-200 shadow-xs w-full overflow-x-auto">
                 <UsersTable users={users} />
             </div>
         </section>

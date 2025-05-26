@@ -8,7 +8,7 @@ const Spaces = () => {
     return (
         <div className='flex flex-col items-center gap-8 max-w-[1000px] w-full'>
             <h2 className="text-3xl font-bold text-center text-gray-900">Nuestros espacios</h2>
-            <div className="flex gap-4 items-center justify-between w-full">
+            <div className="flex flex-wrap gap-4 items-center justify-center w-full">
                 {spaces.slice(0, 3).map((space) => (
                     <SpaceCard
                         key={space.id}
