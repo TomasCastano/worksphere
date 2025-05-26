@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [token, setToken] = useState(Cookies.get("token") || null)
     const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState(null)
     
     const fetchUser = useCallback(async () => {
         if (!token) {
@@ -21,10 +22,10 @@ export const AuthProvider = ({ children }) => {
             setUser(userData)
         } catch (error) {
             console.error("Error al obtener usuario:", error)
-            // Si hay un error, limpiamos el token inválido
             Cookies.remove("token")
             setToken(null)
             setUser(null)
+            setError(error.response?.data?.message || "Error al obtener el usuario")
         } finally {
             setIsLoading(false)
         }
@@ -39,12 +40,15 @@ export const AuthProvider = ({ children }) => {
             const data = await loginRequest(email, password)
             Cookies.set("token", data.token, { secure: true, sameSite: 'strict' })
             setToken(data.token)
+            setError(null); 
             return { success: true }
         } catch (error) {
             console.error("Error en login:", error)
+            const errorMessage = "Credenciales incorrectas";
+            setError(errorMessage);
             return { 
                 success: false, 
-                error: error.response?.data?.message || "Error en el inicio de sesión" 
+                error: errorMessage 
             }
         }
     }
@@ -54,9 +58,11 @@ export const AuthProvider = ({ children }) => {
             const data = await registerRequest(userData)
             Cookies.set("token", data.token, { secure: true, sameSite: 'strict' })
             setToken(data.token)
+            setError(null);
             return { success: true }
         } catch (error) {
             console.error("Error en registro:", error)
+            setError(error.response?.data?.message || "Error en el registro")
             return { 
                 success: false, 
                 error: error.response?.data?.message || "Error en el registro" 
@@ -68,6 +74,7 @@ export const AuthProvider = ({ children }) => {
         Cookies.remove("token")
         setToken(null)
         setUser(null)
+        setError(null);
     }
 
     return (
@@ -75,6 +82,7 @@ export const AuthProvider = ({ children }) => {
             user, 
             token, 
             isLoading,
+            error,
             login, 
             logout, 
             register 
@@ -86,8 +94,5 @@ export const AuthProvider = ({ children }) => {
 
 export const useAuth = () => {
     const context = useContext(AuthContext)
-    if (!context) {
-        throw new Error("useAuth debe ser usado dentro de un AuthProvider")
-    }
     return context
 }

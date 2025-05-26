@@ -7,7 +7,7 @@ import LoginSection from './sections/LoginSection/LoginSection'
 const AuthPage = () => {
 
 	const navigate = useNavigate()
-	const { login } = useAuth()
+	const { login, error } = useAuth()
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -35,7 +35,8 @@ const AuthPage = () => {
 					password={password} 
 					setEmail={setEmail} 
 					setPassword={setPassword} 
-					handleSubmit={handleSubmit} 
+					handleSubmit={handleSubmit}
+					error={error}
 				/>
 			</div>
 		</div>
