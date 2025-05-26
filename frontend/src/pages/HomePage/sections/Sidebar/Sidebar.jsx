@@ -5,8 +5,6 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
 import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined'
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../../../../providers/AuthProvider'
@@ -41,14 +39,12 @@ const Sidebar = () => {
                     <Link to="/home/spaces" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/spaces' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><MapOutlinedIcon fontSize="small" />Espacios</Link>
                     {isAdmin && <Link to="/home/payments" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/payments' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><CreditCardOutlinedIcon fontSize="small" />Pagos</Link>}
                     {isAdmin && <Link to="/home/users" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/users' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><PeopleAltOutlinedIcon fontSize="small" />Usuarios</Link>}
-                    <Link to="/home/profile" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/profile' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><PersonOutlinedIcon fontSize="small" />Mi perfil</Link>
-                    {isAdmin && <Link to="/home/settings" className={`p-2 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer flex items-center gap-2 ${path === '/home/settings' ? 'bg-gray-900/20 text-gray-900 hover:bg-gray-900/20' : ''}`}><SettingsOutlinedIcon fontSize="small" />Configuración</Link>}
                 </ul>
             </div>
             <footer className="p-4 w-full flex flex-row items-center justify-between gap-2 border-t border-gray-200">
                 <div className="flex flex-col overflow-hidden">
-                    <span className="font-medium text-sm truncate">{user?.nombre}</span>
-                    <span className="text-xs text-gray-500 truncate">{user?.email}</span>
+                    <span className="font-medium text-sm truncate" title={user?.nombre}>{user?.nombre}</span>
+                    <span className="text-xs text-gray-500 truncate" title={user?.email}>{user?.email}</span>
                 </div>
                 <button onClick={handleLogout} className="flex items-center justify-center p-2 rounded-md hover:bg-red-500 hover:text-white transition-colors cursor-pointer">
                     <LogoutOutlinedIcon fontSize="small" />
