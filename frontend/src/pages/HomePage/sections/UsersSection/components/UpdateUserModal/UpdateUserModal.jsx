@@ -19,13 +19,13 @@ const UpdateUserModal = ({ open, setOpen, user, userID, handleUpdateUser }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const payload = {
-          nombre:  userUpdate.nombre,
-          email:   userUpdate.email,
-          rol_id:  Number(userUpdate.role)   // aquí va rol_id
+            nombre:  userUpdate.nombre,
+            email:   userUpdate.email,
+            rol_id:  Number(userUpdate.role)
         }
         handleUpdateUser(payload, userID)
         setOpen(false)
-      }
+    }
 
     return (
         <Modal open={open} onClose={() => setOpen(false)}>

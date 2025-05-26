@@ -14,7 +14,7 @@ const MainSection = () => {
         <section className="w-full flex-1 h-[100dvh]">
             <div className='flex flex-col items-center sm:px-10 px-5 py-15 h-full gap-20 overflow-y-auto overflow-x-hidden'>
                 <header className="flex flex-col items-center gap-8 max-w-[800px] w-full">
-                    <p className="text-xs font-medium py-2 px-4 bg-teal-100 rounded-2xl text-teal-900 mb-3">¡Bienvenido de nuevo <span className='font-semibold'>{user?.nombre}</span>!</p>
+                    <p className="text-xs font-medium py-2 px-4 bg-teal-100 rounded-2xl text-teal-900 sm:mb-3 mb-0 text-center">¡Bienvenido de nuevo <span className='font-semibold'>{user?.nombre}</span>!</p>
                     <h1 className="text-gray-900 font-bold md:text-5xl text-4xl text-center w-full">Tu espacio de trabajo <span className='text-teal-900'>perfecto</span> te espera</h1>
                     <p className="text-gray-600 text-lg md:text-xl text-center w-full">Descubre espacios modernos y equipados para potenciar tu productividad. Reserva en segundos y enfócate en lo que realmente importa.</p>
                     <div className="flex sm:flex-row flex-col mt-3 gap-4 items-center justify-center max-w-[500px] w-full">
