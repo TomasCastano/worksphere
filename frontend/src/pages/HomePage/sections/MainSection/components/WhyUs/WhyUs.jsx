@@ -6,7 +6,7 @@ const WhyUs = () => {
     return (
         <div className='px-10 py-15 flex flex-col items-center gap-10 max-w-[1000px] w-full bg-white border border-gray-200 rounded-md shadow-xs hover:shadow-md transition-shadow'>
             <h2 className="text-3xl font-bold text-center text-gray-900">¿Por qué elegir a WorkSphere?</h2>
-            <div className='flex gap-4 items-center justify-between w-full'>
+            <div className='flex sm:flex-row flex-col sm:gap-4 gap-8 sm:items-start items-center justify-between w-full'>
                     <div className='flex flex-col gap-2 items-center text-center'>
                         <div className='bg-teal-100 rounded-full p-3'>
                             <ElectricBoltOutlinedIcon className='text-teal-900' />
