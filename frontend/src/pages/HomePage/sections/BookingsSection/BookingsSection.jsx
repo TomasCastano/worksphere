@@ -38,7 +38,7 @@ const BookingsSection = () => {
                             <BookingCard
                                 key={booking.id}
                                 space={booking.space?.nombre || 'Cargando...'}
-                                userData={booking.user?.nombre || 'Cargando...'}
+                                userName={booking.user?.nombre || 'Cargando...'}
                                 email={booking.user?.email || ''}
                                 status={booking.estado}
                                 initDate={booking.fecha_inicio}
@@ -62,7 +62,7 @@ const BookingsSection = () => {
                                 <BookingCard
                                     key={booking.id}
                                     space={booking.space?.nombre || 'Cargando...'}
-                                    user={booking.user?.nombre || 'Cargando...'}
+                                    userName={booking.user?.nombre || 'Cargando...'}
                                     email={booking.user?.email || ''}
                                     status={booking.estado}
                                     initDate={booking.fecha_inicio}

@@ -29,7 +29,7 @@ const formatTime = (dateString) => {
     return date.toLocaleTimeString('es-ES', options)
 }
 
-const BookingCard = ({ space, userData, email, initDate, endDate, status, id, booking }) => {
+const BookingCard = ({ space, userName, email, initDate, endDate, status, id, booking }) => {
     const { deleteBooking, updateBooking } = useBookings()
     const { user } = useAuth()
     const isAdmin = user?.rol_id === 1
@@ -47,7 +47,7 @@ const BookingCard = ({ space, userData, email, initDate, endDate, status, id, bo
             <header className="pb-2 flex flex-col gap-2 ">
                 <div className='flex justify-between items-center'>
                     <span className='text-gray-600 text-sm flex items-center gap-1'><InsertInvitationOutlinedIcon fontSize='small' className="text-gray-500" />{formatDate(initDate)}</span>
-                    <p className='text-xs bg-gray-900 text-white px-2 py-1 rounded-xl'>{status}</p>
+                    <p className='text-xs bg-gray-900 text-white px-2 py-1 rounded-xl flex justify-center items-center'>{status}</p>
                 </div>
                 <h3 className='font-medium text-lg'>{space}</h3>
             </header>
@@ -64,7 +64,7 @@ const BookingCard = ({ space, userData, email, initDate, endDate, status, id, bo
                 <div className='flex gap-2'>
                     <PersonOutlineOutlinedIcon fontSize='small' className="text-gray-500" />
                     <div>
-                        <p className='font-medium text-sm'>{userData}</p>
+                        <p className='font-medium text-sm'>{userName}</p>
                         <p className='text-gray-600 text-sm'>{email}</p>
                     </div>
                 </div>
